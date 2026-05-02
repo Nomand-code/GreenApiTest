@@ -19,25 +19,25 @@ export const waMethods = {
 
      
     
-   async sendFileByUrl(id, token, chatId, url, buttons) {
-    const allowedExtensions = ['.jpg', '.jpeg', '.png', '.pdf', '.gif'];
-    const isCorrect = allowedExtensions.some(ext => url.toLowerCase().endsWith(ext));
-    if (!isCorrect) {
-    alert("Ссылка должна заканчиваться на .jpg, .png или .pdf");
-    return;
+   async sendFileByUrl(id, token, chatId, url,fileName) {
+        // Простая проверка расширения
+        const allowedExtensions = ['.jpg', '.jpeg', '.png', '.pdf', '.gif'];
+        const isCorrect = allowedExtensions.some(ext => url.toLowerCase().includes(ext)); 
+        
+        if (!isCorrect) {
+            throw new Error("Ссылка должна содержать .jpg, .png или .pdf");
         }
-    // Извлекаем имя файла из URL (или можно передавать отдельным параметром)
-    const fileName = url.split('/').pop() || 'file';
 
-    const body = {
-        chatId: chatId,
-        urlFile: url,
-        fileName: fileName,
-        caption: "Посмотрите этот файл",
-       
-    };
-    //console.log(fileName)
-    return await greenApi.postData(id, token, 'sendFileByUrl', body);
-}
+        // Извлекаем имя файла
+
+        const body = {
+            chatId: chatId,
+            urlFile: url,      
+            fileName: fileName,
+            caption: "Посмотрите!"
+        };
+
+        return await greenApi.postData(id, token, 'sendFileByUrl', body);
+    }
 
 };

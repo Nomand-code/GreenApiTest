@@ -100,9 +100,10 @@ btnSendFile.addEventListener('click', async () => {
             alert("Заполните ID чата и ссылку на файл");
             return;
         }
-
+        console.log(fileName);
+        
         divRes.textContent = "Отправка файла...";
-
+        
         try {
             // В Green API метод обычно называется sendFileByUrl
             const data = await waMethods.sendFileByUrl(id, token, chatId, url, fileName);
