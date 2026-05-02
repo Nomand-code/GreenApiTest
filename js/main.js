@@ -5,6 +5,8 @@ const inputId = document.getElementById('userId');
 const inputToken = document.getElementById('userToken');
 const btnGetSettings = document.getElementById('btnGetSettings');
 
+const btnGetState = document.getElementById('btnGetState');
+
 const messageId = document.getElementById('msgChatId');
 const message = document.getElementById('msgText');
 const sendMessage = document.getElementById('btnSendMessage');
@@ -37,7 +39,27 @@ btnGetSettings.addEventListener('click', async () => {
     }
 });
 
+btnGetState.addEventListener('click',async () => {
+    const id = inputId.value;
+    const token = inputToken.value;
+    
 
+    // Очищаем предыдущий результат и пишем, что загружаем
+    divRes.textContent = "Загрузка...";
+
+    try {
+        // Вызываем метод из твоего файла methods.js
+        const data = await waMethods.fetchStateInstance(id, token);
+        
+        // Выводим результат. Используем JSON.stringify для красивого отображения объекта
+        // null, 2 — чтобы были отступы и переносы строк
+        divRes.innerHTML = `<pre>${JSON.stringify(data, null, 2)}</pre>`;
+        
+    } catch (error) {
+        console.error(error);
+        divRes.textContent = "Ошибка при получении данных: " + error.message;
+    }
+})
 // ... твой код выше (btnGetSettings уже есть) ...
 
 // 1. Обработчик отправки текстового сообщения
