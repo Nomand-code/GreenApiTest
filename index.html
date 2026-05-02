@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minimal Design</title>
+    <link rel="stylesheet" href="css/main.css">
+    <script type="module" src="js/main.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Левая колонка -->
+        <div class="left_group">
+            <!-- Блок авторизации -->
+            <div class="item">
+                <input type="text" placeholder="ID" id="userId">
+                <input type="text" placeholder="Token" id="userToken">
+            </div>
+
+            <!-- Кнопки статуса -->
+            <div class="item">
+                <button id="btnGetSettings">getSettings</button>
+                <button id="btnGetState">getStateInstance</button>
+            </div>
+
+            <!-- Блок текстового сообщения -->
+            <div class="item">
+                <input type="text" placeholder="chatId" id="msgChatId">
+                <input type="text" placeholder="Message" id="msgText" class="wide"> 
+                <button id="btnSendMessage">Send message</button>
+            </div>
+
+            <!-- Блок отправки файла -->
+            <div class="item">
+                <input type="text" placeholder="chatId" id="fileChatId">
+                <input type="text" placeholder="URL" id="fileUrl">
+                <button id="btnSendFile">SendFileByUrl</button>
+            </div>
+        </div>
+
+
+        <!-- Правая колонка -->
+        <div class="right_group">
+            <span class="label">Ответ:</span>
+            <div class="main_field" id="result">
+                Результат запроса появится здесь...
+            </div>
+        </div>
+    </div>  
+</body>
+</html>
